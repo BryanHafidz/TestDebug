@@ -1,21 +1,10 @@
----
-kind: pipeline
-type: ssh
-name: default
-
-server:
-  host: 1.2.3.4
-  user: root
-  password:
-    from_secret: password
-
-steps:
-- name: backend
-  commands:
-  - go build
-  - go test
-
-- name: frontend
-  commands:
-  - npm install
-  - npm test
+pipeline:
+  ssh:
+    image: appleboy/drone-ssh
+    host: foo.com
+    username: root
+    password: 1234
+    port: 22
+    script:
+      - echo hello
+      - echo world
