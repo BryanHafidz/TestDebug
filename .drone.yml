@@ -1,9 +1,9 @@
 clone: 
   depth: 1
 kind: pipeline
-  - name: start-debug-server
-    image: kdrag0n/drone-ssh-debug:latest
-    detach: true
+name: start-debug-server
+image: kdrag0n/drone-ssh-debug:latest
+detach: true
 
     settings:
       authorized_keys:
