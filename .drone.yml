@@ -1,14 +1,21 @@
-clone: 
-  depth: 1
+---
 kind: pipeline
-name: start-debug-server
-image: kdrag0n/drone-ssh-debug:latest
-detach: true
-    settings:
-      authorized_keys:
-        # authorized_keys for SSH debug server in ssh_authorized_keys secret
-        from_secret: ssh_authorized_keys
-    when:
-      event:
-        exclude:
-          - pull_request
+type: ssh
+name: default
+
+server:
+  host: 1.2.3.4
+  user: root
+  password:
+    from_secret: password
+
+steps:
+- name: backend
+  commands:
+  - go build
+  - go test
+
+- name: frontend
+  commands:
+  - npm install
+  - npm test
